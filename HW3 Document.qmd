@@ -46,7 +46,8 @@ Reading in the `trailblazer.csv` data
 
 ```{r}
 trailblazer <- read_csv('~/ST558 Repo/HW3_/Data/trailblazer.csv',
-                   col_names= TRUE)
+                   col_names= TRUE,
+                   show_col_types = FALSE)
 trailblazer
 ```
 
@@ -67,7 +68,7 @@ print(trailblazer_longer, n=5)
 ### Question c: Who scored more when playing at home versus away
 
 ```{r}
-library(kableExtra)
+library(kableExtra) #using info from office hours to make smaller decimal places
 
 trailblazer_wider <- trailblazer_longer |> 
     pivot_wider(names_from = (Location),
@@ -105,7 +106,8 @@ penguins_island_ct <- penguins |>
   summarize(count=n(), .groups='drop') |> 
   pivot_wider(names_from = island,
               values_from = count,
-              values_fill = 0)
+              values_fill = 0) |> 
+  mutate(across(2:4, as.numeric)) #conver island rows to dbls
 
 penguins_island_ct
 ```
