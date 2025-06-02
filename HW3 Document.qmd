@@ -1,7 +1,7 @@
 ---
 title: "HW3: Tidyverse Work"
 format: pdf
-author: Mike maccia
+author: Mike Maccia
 editor: visual
 ---
 
@@ -108,5 +108,25 @@ penguins_island_ct <- penguins |>
               values_fill = 0)
 
 penguins_island_ct
+```
+
+
+## Task 4 
+
+Replacing 2 missing values for bill length
+
+```{r}
+penguins_fixed_bill_length <- penguins |> 
+  mutate(bill_length_mm = 
+           case_when(species == "Gentoo" & is.na(bill_length_mm) 
+                                ~ 30, TRUE ~ bill_length_mm )) |> 
+                  #finding where gentoo is missing change to 30
+  mutate(bill_length_mm = 
+           case_when(species == "Adelie" & is.na(bill_length_mm) 
+                                ~ 26, TRUE ~ bill_length_mm )) |> 
+                  #finding where adelie is missing change to 26
+  arrange(bill_length_mm)
+
+print(penguins_fixed_bill_length, n = 10) 
 ```
 
