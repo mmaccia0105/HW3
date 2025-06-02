@@ -36,3 +36,52 @@ data_2 <- read_delim('~/ST558 Repo/HW3_/Data/data2.txt',
 data_2
 ```
 
+## Task 2
+
+Data tidying skills
+
+### Question a: Reading Data
+
+Reading in the `trailblazer.csv` data
+
+```{r}
+trailblazer <- read_csv('~/ST558 Repo/HW3_/Data/trailblazer.csv',
+                   col_names= TRUE)
+trailblazer
+```
+
+
+### Question b: Pivoting the data longer
+
+```{r}
+trailblazer_longer <- trailblazer |> 
+    pivot_longer(cols = 2:11,
+                 names_to = c('Game', 'Location'),
+                 names_prefix = 'Game',
+                 names_sep = '_',
+                 values_to = 'Points') 
+
+print(trailblazer_longer, n=5)
+```
+
+### Question c: Who scored more when playing at home versus away
+
+```{r}
+library(kableExtra)
+
+trailblazer_wider <- trailblazer_longer |> 
+    pivot_wider(names_from = (Location),
+                 values_from = Points) |> #pivot wider
+    group_by(Player) |>  
+    summarize(mean_home = mean(Home, na.rm=T), #creating mean of home points/away points 
+                                                #by player
+              mean_away = mean (Away, na.rm=T)) |> 
+    mutate(diff_points = (mean_home - mean_away)) |> #creating different in means
+    arrange(desc(diff_points)) |>#arrange by descending
+    kbl(digits=2)
+
+trailblazer_wider
+```
+
+
+While they did not necessarily score the most points, Jusuf Nurkic (6.67) and Robert Covington (6.5) scored on average more points at home than away through the first 10 games of the season.
