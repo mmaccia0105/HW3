@@ -51,7 +51,6 @@ trailblazer <- read_csv('~/ST558 Repo/HW3_/Data/trailblazer.csv',
 trailblazer
 ```
 
-
 ### Question b: Pivoting the data longer
 
 ```{r}
@@ -84,18 +83,17 @@ trailblazer_wider <- trailblazer_longer |>
 trailblazer_wider
 ```
 
-
 While they did not necessarily score the most points, Jusuf Nurkic (6.67) and Robert Covington (6.5) scored on average more points at home than away through the first 10 games of the season.
 
 ## Task 3
 
 ### Question a. Describing what some values mean
 
-<NULL> indicates that there were no values within a column. For example, there were no bill_length measurements for Gentoo species on Torgersen island.
+`<NULL>` indicates that there were no values within a column. For example, there were no bill_length measurements for Gentoo species on Torgersen island.
 
-\<dbl \[52\]\> indicates that within that cell there would are 52 observations (which are doubles) for bill length.
+`\<dbl \[52\]\>` indicates that within that cell there would are 52 observations (which are doubles) for bill length.
 
-<list> indicates a list-column within a tribble. List-columns occur when each element within a column is a list. For example, the above cell of Adelie species on Torgersen island, there is a list of 52 doubles within that cell / element.
+`<list>` indicates a list-column within a tribble. List-columns occur when each element within a column is a list. For example, the above cell of Adelie species on Torgersen island, there is a list of 52 doubles within that cell / element.
 
 ### Question b. Creating a new table
 
@@ -112,8 +110,7 @@ penguins_island_ct <- penguins |>
 penguins_island_ct
 ```
 
-
-## Task 4 
+## Task 4
 
 Replacing 2 missing values for bill length
 
@@ -131,4 +128,3 @@ penguins_fixed_bill_length <- penguins |>
 
 print(penguins_fixed_bill_length, n = 10) 
 ```
-
